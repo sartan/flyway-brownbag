@@ -31,7 +31,7 @@ PGPASSWORD=password psql -h localhost --port 5555 -U postgres flyway_demo
 ```
 ## Migrate
 ```shell
-flyway -url=jdbc:postgresql://localhost:5555/flyway_demo -user=postgres -password=password migrate
+flyway migrate
 ```
 ## Other useful commands
 
@@ -53,5 +53,5 @@ PGPASSWORD=password psql -h localhost --port 5555 -U postgres flyway_demo -c 'se
 Introducing Flway to an existing DB using `baseline`
 ```shell
 PGPASSWORD=password psql -h localhost --port 5555 -U postgres flyway_demo -c 'drop table flyway_schema_history'
-flyway -url=jdbc:postgresql://localhost:5555/flyway_demo -user=postgres -password=password -baselineVersion=3 baseline
+flyway -baselineVersion=3 baseline
 ```
