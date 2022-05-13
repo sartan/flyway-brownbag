@@ -12,8 +12,7 @@ brew install libpq
 # non-M1 Mac
 # echo 'export PATH="/usr/local/opt/libpq/bin:$PATH"' >> ~/.zshrc
 
-docker pull postgres
-docker run -d -p 5555:5432 -e POSTGRES_PASSWORD=password postgres
+docker run --rm -d -p 5555:5432 -e POSTGRES_PASSWORD=password postgres
 ```
 
 ## Run Postgres
