@@ -26,7 +26,7 @@ psql -f ./create_db.sql
 
 ## Connect to Postgres
 ```shell
-psql ${PGDATABASE}
+psql
 ```
 ## Migrate
 ```shell
@@ -41,16 +41,16 @@ psql -c "drop database ${PGDATABASE} with(force)"
 
 Show tables
 ```shell
-psql ${PGDATABASE} -c '\dt'
+psql -c '\dt'
 ```
 
 Show Flyway migration history
 ```shell
-psql ${PGDATABASE} -c 'select * from flyway_schema_history'
+psql -c 'select * from flyway_schema_history'
 ```
 
 Introducing Flyway to an existing DB using `baseline`
 ```shell
-psql ${PGDATABASE} -c 'drop table flyway_schema_history'
+psql -c 'drop table flyway_schema_history'
 flyway -baselineVersion=3 baseline
 ```
