@@ -30,10 +30,23 @@ PGPASSWORD=password psql -h localhost --port 5555 -U postgres -f ./create_db.sql
 ```shell
 PGPASSWORD=password psql -h localhost --port 5555 -U postgres flyway_demo
 ```
-
+## Migrate
+```shell
+flyway -url=jdbc:postgresql://localhost:5555/flyway_demo -user=postgres -password=password migrate
+```
 ## Other useful commands
 
 Drop database manually
 ```shell
 psql -h localhost --port 5555 -U postgres -c "drop database flyway_demo with(force)"
+```
+
+Show tables
+```shell
+PGPASSWORD=password psql -h localhost --port 5555 -U postgres flyway_demo -c '\dt'
+```
+
+Show Flyway migration history
+```shell
+PGPASSWORD=password psql -h localhost --port 5555 -U postgres flyway_demo -c 'select * from flyway_schema_history'
 ```
