@@ -1,6 +1,7 @@
 # Flyway Demo Brownbag
 
-## Prerequisites
+## Setup
+### Prerequisites
 
 ```shell
 brew install flyway
@@ -13,39 +14,37 @@ brew install libpq
 # echo 'export PATH="/usr/local/opt/libpq/bin:$PATH"' >> ~/.zshrc
 ```
 
-## Run Postgres
+### Run Postgres
 ```shell
 source .env
 docker run -d -p ${PGPORT}:5432 -e POSTGRES_PASSWORD=${PGPASSWORD} postgres
-psql -f ./create_db.sql
 ```
 
-## Create DB
+### Create DB
 ```shell
 psql -f ./create_db.sql
 ```
-## Migrate database
+
+## Commands
+
+### Migrate database
 ```shell
 flyway migrate
 ```
 
-## Drop database manually
-```shell
-psql -c "drop database ${PGDATABASE} with(force)"
-```
-
-## Show tables
+### Show tables
 ```shell
 psql -c '\dt' flyway_demo
 ```
 
-# Show Flyway migration history
+### Show Flyway migration history
 ```shell
 psql -c 'select * from flyway_schema_history' flyway_demo
 ```
 
-# Introduce Flyway to an existing DB using `baseline`
+### Introduce Flyway to an existing DB using `baseline`
 ```shell
 psql -c 'drop table flyway_schema_history' flyway_demo
 flyway -baselineVersion=3 baseline
 ```
+
