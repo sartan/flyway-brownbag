@@ -36,16 +36,16 @@ psql -c "drop database ${PGDATABASE} with(force)"
 
 ## Show tables
 ```shell
-psql -c '\dt'
+psql -c '\dt' flyway_demo
 ```
 
 # Show Flyway migration history
 ```shell
-psql -c 'select * from flyway_schema_history'
+psql -c 'select * from flyway_schema_history' flyway_demo
 ```
 
 # Introduce Flyway to an existing DB using `baseline`
 ```shell
-psql -c 'drop table flyway_schema_history'
+psql -c 'drop table flyway_schema_history' flyway_demo
 flyway -baselineVersion=3 baseline
 ```
