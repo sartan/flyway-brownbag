@@ -16,40 +16,35 @@ brew install libpq
 ## Run Postgres
 ```shell
 source .env
-docker run -d -p ${PGPORT}:5432 -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} postgres
+docker run -d -p ${PGPORT}:5432 -e POSTGRES_PASSWORD=${PGPASSWORD} postgres
+psql -f ./create_db.sql
 ```
 
 ## Create DB
 ```shell
 psql -f ./create_db.sql
 ```
-
-## Connect to Postgres
-```shell
-psql
-```
-## Migrate
+## Migrate database
 ```shell
 flyway migrate
 ```
-## Other useful commands
 
-Drop database manually
+## Drop database manually
 ```shell
 psql -c "drop database ${PGDATABASE} with(force)"
 ```
 
-Show tables
+## Show tables
 ```shell
 psql -c '\dt'
 ```
 
-Show Flyway migration history
+# Show Flyway migration history
 ```shell
 psql -c 'select * from flyway_schema_history'
 ```
 
-Introducing Flyway to an existing DB using `baseline`
+# Introduce Flyway to an existing DB using `baseline`
 ```shell
 psql -c 'drop table flyway_schema_history'
 flyway -baselineVersion=3 baseline
